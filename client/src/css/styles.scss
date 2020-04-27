@@ -1,0 +1,133 @@
+body,
+.blurred-bg-container .content h1 {
+  margin: 0;
+}
+.App{
+  margin:0
+}
+.blurred-bg-container {
+  background: url('https://images.pexels.com/photos/164005/pexels-photo-164005.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+  height: 100vh; /* =h */
+  background-size: cover;
+}
+
+.blurred-bg-container .content {
+  background: inherit;
+  width: 30%; /* =cw */
+  height: 60%; /* =ch */
+  border-radius: 8px;
+  box-shadow: 0 0 32px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 50%; /* =ct */
+  left: 50%; /* =cl */
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  
+}
+
+ .blurred-bg-container .text {
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.3);
+  height: 100%;
+  box-sizing: border-box; 
+  display:flex;
+  justify-content: center;
+  align-items: center;
+} 
+
+.blurred-bg-container .blur {
+  background: inherit;
+  height: 100vh; 
+  width: 166.667%; 
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(
+    -10%,
+    -30%
+  ); 
+  filter: blur(20px);
+  z-index: -1;
+}
+
+
+.spacer-sm{
+  height:1rem;
+}
+.button{
+  width:100%;
+  font-size: xx-large;
+}
+
+.home-link{
+  position:absolute;
+  top: 2rem;
+  right: 23rem;
+  font-size:large;
+  color:white;
+}
+
+.dash-link{
+  position:absolute;
+  top: 2rem;
+  right:15rem;
+  font-size:large;
+  color:white;
+
+}
+.login-link{
+  position:absolute;
+  top: 2rem;
+  right: 10rem;
+  font-size:large;
+  color:white;
+}
+.signup-link{
+  position:absolute;
+  top: 2rem;
+  right: 4rem;
+  font-size:large;
+  color:white;
+}
+
+
+
+.signup-link-2{
+
+  font-size: large;
+}
+
+.landing{
+  height:100vh;
+  background-image: url('https://images.pexels.com/photos/164005/pexels-photo-164005.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+  background-size: cover;
+  text-align:center;
+  padding-top: 25rem;
+  
+}
+
+.dash-board{
+  height:100vh;
+  background-image: url('https://images.pexels.com/photos/164005/pexels-photo-164005.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+  background-size: cover;
+  text-align:center;
+  padding-top: 25rem;
+  
+}
+
+.fas{
+  margin-right:1rem;
+}
+
+.welcome{
+  text-align:center;
+  margin-bottom: 10vh;
+}
+
+.login-form{
+  height:80%;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
