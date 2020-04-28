@@ -2,6 +2,8 @@ import React, { useState }  from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
+
 
 const LoginForm = () => {
 
@@ -9,7 +11,8 @@ const LoginForm = () => {
   const initialState = {
     username: '',
     password: ''
-    }
+}
+
  const [credentials, setCredentials] = useState(initialState);
  const history = useHistory();
 
@@ -23,8 +26,15 @@ const LoginForm = () => {
 
  const login = e => {
     e.preventDefault();
-    console.log(credentials);
-    history.push('/dashboard');
+    axios
+        .post('https://bw-node.herokuapp.com/login', credentials)
+        .then(res => {
+            localStorage.setItem('token', JSON.stringify(res.data.token));
+            history.push('/dashboard');
+            console.log(res)
+          })
+        .catch(err => console.log(err));
+    
     setCredentials(initialState);
 }
 
@@ -39,9 +49,9 @@ const LoginForm = () => {
             <form className='form' onSubmit={login}>
 
                 <label htmlFor='username'>
-                        User ID (Email)
-                    <div class="field">
-                        <p class="control has-icons-left">
+                        Username
+                    <div className="field">
+                        <p className="control has-icons-left">
                         <input
                         className='input is-large'
                         type='text'
@@ -49,8 +59,8 @@ const LoginForm = () => {
                         onChange={onChangeHandler}
                         value={credentials.username}
                     />
-                        <span class="icon is-small is-left">
-                        <i class="fas fa-envelope"/>
+                        <span className="icon is-small is-left">
+                            <i className="fas fa-user"/>
                         </span>
                         </p>
                     </div>
@@ -59,8 +69,8 @@ const LoginForm = () => {
                 <label htmlFor='password'>
                     Password
                 
-                    <div class="field">
-                        <p class="control has-icons-left">
+                    <div className="field">
+                        <p className="control has-icons-left">
                         <input
                             className='input is-large'
                             type='password'
@@ -68,8 +78,8 @@ const LoginForm = () => {
                             onChange={onChangeHandler}
                             value={credentials.password}
                         />
-                        <span class="icon is-small is-left">
-                            <i class="fas fa-lock"/>
+                        <span className="icon is-small is-left">
+                            <i className="fas fa-lock"/>
                         </span>
                         </p>
                     </div>
@@ -80,7 +90,7 @@ const LoginForm = () => {
                     type='submit' 
                     className='button is-danger is-large is-rounded login-btn'
                 >
-                    <i class="fas fa-lock-open"/>
+                    <i className="fas fa-lock-open"/>
                     Login
                 </button>
                 <div className='spacer-sm'/>
@@ -91,7 +101,7 @@ const LoginForm = () => {
        
     </div>
 
-    <div className="blur"></div>
+    <div className="blur"/>
   </div>
 </div>
     )

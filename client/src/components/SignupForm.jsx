@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Navbar from './Navbar';
+import axios from 'axios';
 
 
 const SignupForm = () => {
     
     const initialState = {
-        firstName: '',
-        lastName: '',
+        username: '',
         email: '',
         password: '',
-        pwConfirm: ''
+        account_type: ''
     }
+    
     const [formState, setFormState] = useState(initialState);
     const history = useHistory();
     const onChangeHandler = e => {
@@ -24,9 +25,14 @@ const SignupForm = () => {
     
     const signup = e => {
         e.preventDefault();
-        console.log(formState);
-        history.push('./');
+        axios.post('https://bw-node.herokuapp.com/register', formState)
+        .then(res =>{
+            console.log(res);
+            history.push('./login')
+        })
+        .catch(err => console.log(err));
         setFormState(initialState);
+        
     };
     
        return ( 
@@ -40,34 +46,29 @@ const SignupForm = () => {
           
         <form className='form' onSubmit={signup}>
 
-            <label htmlFor='firstName'>
-                    First Name
-                <input
-                    className='input is-large'
-                    type='text'
-                    name='firstName'
-                    onChange={onChangeHandler}
-                    value={formState.firstName}
-                />
-            </label>
-
-
-                <label htmlFor='lastName'>
-                    Last Name
-                <input
-                    className='input is-large'
-                    type='text'
-                    name='lastName'
-                    onChange={onChangeHandler}
-                    value={formState.lastName}
-                />
+                <label htmlFor='username'>
+                        Username
+                    <div className="field">
+                        <p className="control has-icons-left">
+                        <input
+                            className='input is-large'
+                            type='text'
+                            name='username'
+                            onChange={onChangeHandler}
+                            value={formState.usename}
+                        />
+                        <span className="icon is-small is-left">
+                        <i className="fas fa-user"/>
+                        </span>
+                        </p>
+                    </div>
                 </label>
 
                 
                 <label htmlFor='email'>
                         Email
-                    <div class="field">
-                        <p class="control has-icons-left">
+                    <div className="field">
+                        <p className="control has-icons-left">
                         <input
                         className='input is-large'
                         type='text'
@@ -75,8 +76,8 @@ const SignupForm = () => {
                         onChange={onChangeHandler}
                         value={formState.email}
                     />
-                        <span class="icon is-small is-left">
-                        <i class="fas fa-envelope"/>
+                        <span className="icon is-small is-left">
+                        <i className="fas fa-envelope"/>
                         </span>
                         </p>
                     </div>
@@ -87,8 +88,8 @@ const SignupForm = () => {
                 <label htmlFor='password'>
                     Password
                 
-                    <div class="field">
-                        <p class="control has-icons-left">
+                    <div className="field">
+                        <p className="control has-icons-left">
                         <input
                             className='input is-large'
                             type='password'
@@ -96,31 +97,22 @@ const SignupForm = () => {
                             onChange={onChangeHandler}
                             value={formState.password}
                         />
-                        <span class="icon is-small is-left">
-                            <i class="fas fa-lock"/>
+                        <span className="icon is-small is-left">
+                            <i className="fas fa-lock"/>
                         </span>
                         </p>
                     </div>
                 </label>
 
-
-                <label htmlFor='pwConfirm'>
-                    Confirm Password
-                
-                    <div class="field">
-                        <p class="control has-icons-left">
-                        <input
-                            className='input is-large'
-                            type='pwConfirm'
-                            name='pwConfirm'
-                            onChange={onChangeHandler}
-                            value={formState.pwConfirm}
-                        />
-                        <span class="icon is-small is-left">
-                            <i class="fas fa-lock"/>
-                        </span>
-                        </p>
-                    </div>
+                <label htmlFor='account_type'>
+                        Account Type
+                    <input
+                        className='input is-large'
+                        type='text'
+                        name='account_type'
+                        onChange={onChangeHandler}
+                        value={formState.account_type}
+                    />
                 </label>
 
 
