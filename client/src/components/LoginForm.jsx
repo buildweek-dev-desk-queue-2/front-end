@@ -1,6 +1,6 @@
 import React, { useState }  from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from './Navbar';
+import Navbar from './navsAndMenues/Navbar';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
@@ -27,7 +27,7 @@ const LoginForm = () => {
  const login = e => {
     e.preventDefault();
     axios
-        .post('https://bw-node.herokuapp.com/login', credentials)
+        .post('https://bw-node.herokuapp.com/auth/login', credentials)
         .then(res => {
             localStorage.setItem('token', JSON.stringify(res.data.token));
             history.push('/dashboard');

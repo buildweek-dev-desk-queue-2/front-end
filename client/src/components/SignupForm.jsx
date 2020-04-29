@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import Navbar from './Navbar';
+import Navbar from './navsAndMenues/Navbar';
 import axios from 'axios';
 
 
@@ -25,7 +25,7 @@ const SignupForm = () => {
     
     const signup = e => {
         e.preventDefault();
-        axios.post('https://bw-node.herokuapp.com/register', formState)
+        axios.post('https://bw-node.herokuapp.com/auth/register', formState)
         .then(res =>{
             console.log(res);
             history.push('./login')

@@ -6,20 +6,21 @@ body,
   margin:0
 }
 .blurred-bg-container {
-  background: url('https://images.pexels.com/photos/164005/pexels-photo-164005.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
-  height: 100vh; /* =h */
-  background-size: cover;
+  // background: url('https://images.pexels.com/photos/164005/pexels-photo-164005.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+   
+  // background-size: cover;
+  height: 100vh;
 }
 
 .blurred-bg-container .content {
   background: inherit;
-  width: 30%; /* =cw */
-  height: 60%; /* =ch */
+  width: 30%; 
+  height: 60%; 
   border-radius: 8px;
   box-shadow: 0 0 32px rgba(0, 0, 0, 0.5);
   position: absolute;
-  top: 50%; /* =ct */
-  left: 50%; /* =cl */
+  top: 50%; 
+  left: 50%; 
   transform: translate(-50%, -50%);
   overflow: hidden;
   
@@ -50,68 +51,29 @@ body,
   z-index: -1;
 }
 
-
+.spacer{
+  height:5rem;
+}
 .spacer-sm{
   height:1rem;
 }
-.button{
-  width:100%;
-  font-size: xx-large;
-}
 
-.home-link{
-  position:absolute;
-  top: 2rem;
-  right: 23rem;
-  font-size:large;
-  color:white;
-}
-
-.dash-link{
-  position:absolute;
-  top: 2rem;
-  right:15rem;
-  font-size:large;
-  color:white;
-
-}
-.login-link{
-  position:absolute;
-  top: 2rem;
-  right: 10rem;
-  font-size:large;
-  color:white;
-}
-.signup-link{
-  position:absolute;
-  top: 2rem;
-  right: 4rem;
-  font-size:large;
-  color:white;
+.navbar{
+  width:30%;
+  display:flex;
+  justify-content: space-around;
+  margin-left:70%;
 }
 
 
 
-.signup-link-2{
 
-  font-size: large;
-}
 
-.landing{
-  height:100vh;
-  background-image: url('https://images.pexels.com/photos/164005/pexels-photo-164005.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
-  background-size: cover;
-  text-align:center;
-  padding-top: 25rem;
-  
-}
+
 
 .dash-board{
   height:100vh;
-  background-image: url('https://images.pexels.com/photos/164005/pexels-photo-164005.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
-  background-size: cover;
-  text-align:center;
-  padding-top: 25rem;
+  padding: 2rem;
   
 }
 
@@ -119,10 +81,7 @@ body,
   margin-right:1rem;
 }
 
-.welcome{
-  text-align:center;
-  margin-bottom: 10vh;
-}
+ 
 
 .login-form{
   height:80%;
@@ -131,3 +90,34 @@ body,
   justify-content: space-around;
 }
 
+.title{
+  text-align: center;
+}
+
+
+
+
+
+
+  .button{
+    width:50%;
+  }
+
+
+.create-ticket-btn{
+  width:20%;
+}
+
+.ticket-list{
+  display:flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  // align-items: baseline;
+  width:50%;
+  
+}
+
+.ticket{
+  width:40%;
+  min-height:10rem;
+}

@@ -8,6 +8,8 @@ const axiosWithAuth = () => {
         headers: {
             Authorization: token
         },
-        baseURL:'api url' /*here goes the actural url for the api*/
+        baseURL:'https://bw-node.herokuapp.com' 
     })
-}
+};
+
+export default axiosWithAuth;
