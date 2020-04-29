@@ -1,4 +1,4 @@
-import React, { useState, useEffect }  from 'react';
+import React, { useState }  from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from './navsAndMenues/Navbar';
 import { useHistory } from 'react-router-dom';
@@ -28,14 +28,7 @@ const LoginForm = () => {
   });
 
  const [credentials, setCredentials] = useState(initialState);
- const [formDisabled, setFormDisabled] = useState(true);
  const history = useHistory();
-
-  useEffect(() => {
-    formSchema.isValid(credentials).then((valid) => {
-      setFormDisabled(!valid);
-    });
-  }, [credentials]);
 
  const onChangeHandler = e => {
     e.preventDefault();
@@ -66,7 +59,7 @@ const LoginForm = () => {
  const login = e => {
     e.preventDefault();
     axios
-        .post('https://bw-node.herokuapp.com/login', credentials)
+        .post('https://bw-node.herokuapp.com/auth/login', credentials)
         .then(res => {
             localStorage.setItem('token', JSON.stringify(res.data.token));
             history.push('/dashboard');
@@ -129,7 +122,6 @@ const LoginForm = () => {
                 <button 
                     type='submit' 
                     className='button is-danger is-large is-rounded login-btn'
-                    disabled={formDisabled}
                 >
                     <i className="fas fa-lock-open"/>
                     Login
