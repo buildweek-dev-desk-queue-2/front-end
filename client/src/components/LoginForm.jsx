@@ -1,9 +1,18 @@
-import React, { useState }  from 'react';
+import React, { useState, useEffect }  from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from './navsAndMenues/Navbar';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import * as yup from "yup";
 
+const formSchema = yup.object().shape({
+  username: yup
+    .string()
+    .required("Enter your username"),
+  password: yup
+    .string()
+    .required("Enter your password"),
+});
 
 const LoginForm = () => {
 
@@ -13,11 +22,41 @@ const LoginForm = () => {
     password: ''
 }
 
+  const [errors, setErrors] = useState({
+    username: "",
+    password: "",
+  });
+
  const [credentials, setCredentials] = useState(initialState);
+ const [formDisabled, setFormDisabled] = useState(true);
  const history = useHistory();
+
+  useEffect(() => {
+    formSchema.isValid(credentials).then((valid) => {
+      setFormDisabled(!valid);
+    });
+  }, [credentials]);
 
  const onChangeHandler = e => {
     e.preventDefault();
+    e.persist();
+
+    yup
+    .reach(formSchema, e.target.name)
+    .validate(e.target.value)
+    .then((valid) => {
+      setErrors({
+        ...errors,
+        [e.target.name]: "",
+      });
+    })
+    .catch((err) => {
+      setErrors({
+        ...errors,
+        [e.target.name]: err.errors[0],
+      });
+    });
+
     setCredentials({
         ...credentials,
         [e.target.name] : e.target.value
@@ -27,7 +66,7 @@ const LoginForm = () => {
  const login = e => {
     e.preventDefault();
     axios
-        .post('https://bw-node.herokuapp.com/auth/login', credentials)
+        .post('https://bw-node.herokuapp.com/login', credentials)
         .then(res => {
             localStorage.setItem('token', JSON.stringify(res.data.token));
             history.push('/dashboard');
@@ -63,12 +102,12 @@ const LoginForm = () => {
                             <i className="fas fa-user"/>
                         </span>
                         </p>
+                        {errors.username}
                     </div>
                 </label>
 
                 <label htmlFor='password'>
                     Password
-                
                     <div className="field">
                         <p className="control has-icons-left">
                         <input
@@ -82,6 +121,7 @@ const LoginForm = () => {
                             <i className="fas fa-lock"/>
                         </span>
                         </p>
+                        {errors.password}
                     </div>
                 </label>
 
@@ -89,6 +129,7 @@ const LoginForm = () => {
                 <button 
                     type='submit' 
                     className='button is-danger is-large is-rounded login-btn'
+                    disabled={formDisabled}
                 >
                     <i className="fas fa-lock-open"/>
                     Login
