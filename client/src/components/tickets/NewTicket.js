@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import axiosWithAuth from '../../utils/axiosWithAuth';
 
 
-const NewTicket = ({ fetchTickets }) => {
+const NewTicket = ({ fetchTickets, isCreating, setIsCreating }) => {
 
-    const [isCreating, setIsCreating] = useState(false);
+   
     const initialState = {
     
         title: '',
@@ -32,21 +32,16 @@ const NewTicket = ({ fetchTickets }) => {
         .catch(err => console.log(err));
         
         setTicket(initialState);
+        setIsCreating(false);
     }
-    const toggleCreating = e => {
-            e.preventDefault();
-            setIsCreating(!isCreating);
-            
-    }
+   
 
     return (
         <div>
-            <button className='button is-dark create-ticket-btn' onClick={toggleCreating}>
-                Create a Ticket
-            </button> 
+             
             <div className='spacer'/>
             {isCreating && (
-                <form className='form' onSubmit={createTicket}>
+                <form className='form box' onSubmit={createTicket}>
             <label htmlFor='title'>
                 Subject
                 <input 

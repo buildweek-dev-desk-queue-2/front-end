@@ -66,22 +66,14 @@ body,
 }
 
 
-
-
-
-
-
 .dash-board{
   height:100vh;
-  padding: 2rem;
-  
+  padding: 2rem; 
 }
 
 .fas{
   margin-right:1rem;
 }
-
- 
 
 .login-form{
   height:80%;
@@ -94,11 +86,6 @@ body,
   text-align: center;
 }
 
-
-
-
-
-
   .button{
     width:50%;
   }
@@ -108,16 +95,21 @@ body,
   width:20%;
 }
 
-.ticket-list{
-  display:flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  // align-items: baseline;
-  width:50%;
-  
-}
+// .ticket-list{
+//   display:flex;
+//   flex-flow: row wrap;
+//   justify-content: space-between;
+//   align-items: baseline;
+//   width:90%;
+//   border:1px solid;
+//   margin:auto;
+    
+// }
 
-.ticket{
-  width:40%;
-  min-height:10rem;
+// .ticket-card{
+//   width:100%;
+// }
+
+.header{
+  margin-bottom:4rem;
 }

@@ -1,15 +1,18 @@
 import React from 'react';
-import Ticket from './Ticket';
+import TicketCard from './TicketCard';
+import { Link } from 'react-router-dom'
 
 const TicketList = ({ tickets }) => {
     return (
          <div className='ticket-list'>
             <p className='title is-5'/>
-            
+            <div>
                 {tickets.map(tk => 
-                    <Ticket key={tk.id} ticket={tk} />
+                <Link to={`/tickets/${tk.id}`} key={tk.id}>
+                    <TicketCard  ticket={tk} />
+                </Link>
                 )}
-            
+            </div>
          </div> 
     );
 };

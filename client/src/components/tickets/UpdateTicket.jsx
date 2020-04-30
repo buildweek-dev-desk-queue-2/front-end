@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import axiosWithAuth from '../../utils/axiosWithAuth';
-import axios from 'axios';
-import toggleSwitch from '../reusable/toggleSwitch';
+
 
 const UpdateTicket = () => {
 
@@ -10,25 +9,31 @@ const UpdateTicket = () => {
     
         title: '',
         description: '',
-        user_id:2,
-        completed:'false' 
+        completed: 0
+         
     }
 
 
 
     const [ticket, setTicket] = useState(initialState);
-    const params = useParams();
+    const { id } = useParams();
     const history = useHistory();
 
     useEffect(() =>{
         axiosWithAuth()
-        .get(`/ticket/${params.id}`)
+        .get(`/ticket/${id}`)
         .then(res => {
-         console.log(res)
-                //  setTicket(res.data)
+         const data=res.data[0];
+               setTicket({
+                   ...ticket,
+                   title:data.title,
+                   description:data.description,
+                   completed: data.completed
+               })
         })
              .catch(err => console.log(err))
-    }, [params.id]);
+    }, [id]);
+
 
     const onChangeHandler = e => {
         e.preventDefault();
@@ -40,12 +45,13 @@ const UpdateTicket = () => {
 
     const updateTicket = e => {
         e.preventDefault();
-        axios.put(`https://bw-node.herokuapp.com/ticket/${params.id}`, ticket)
+        axiosWithAuth()
+        .put(`/ticket/${id}`, ticket)
         .then(res => {
             
             console.log(res);
-            // props.getMovieList();
-            history.push(`/dashboard`)
+            
+            history.push(`/tickets/${id}`)
         })
         .catch(err => console.log(err));
 
@@ -86,7 +92,7 @@ const UpdateTicket = () => {
                 />
             </label>
                 <button className='button' type='submit'>Update</button>
-                <div className='completed' onClick={toggleCompleted}><toggleSwitch /></div>
+                <button className='completed' onClick={toggleCompleted}>completed</button>
             </form>
             
         </div>
