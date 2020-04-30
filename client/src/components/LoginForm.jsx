@@ -120,7 +120,7 @@ const LoginForm = () => {
                 className="button is-danger is-large is-rounded login-btn"
               >
                 <i className="fas fa-lock-open" />
-                Login
+                Log In
               </button>
               <div className="spacer-sm" />
               <Link className="signup-link-2" to="/signup">

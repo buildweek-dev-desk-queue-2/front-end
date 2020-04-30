@@ -167,7 +167,7 @@ const SignupForm = () => {
                 type="submit"
                 className="button is-danger is-large is-rounded"
               >
-                Signup
+                Sign Up
               </button>
             </form>
           </div>
