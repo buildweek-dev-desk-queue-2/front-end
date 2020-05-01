@@ -66,3 +66,15 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+## Project Layout
+
+Components are routed and structured to render. The main `<App />` component is wrapped in the `<BrowserRouter />` inside the index.js file.
+
+### Validation
+
+DevDeskQueue uses the [yup](https://github.com/jquense/yup) library for form validation. Validation is in place for the `Sign Up` and `Login` components. Errors and alerts are in place for both forms as well.
+
+### Server Requests
+
+DevDeskQueue uses [axios](https://github.com/axios/axios) to make requests to the server, set in place for `log in`, `sign up` and `help tickets`.
